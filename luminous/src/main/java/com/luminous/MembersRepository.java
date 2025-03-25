@@ -1,5 +1,6 @@
 package com.luminous;
 
+import com.luminous.domain.Member;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
@@ -8,11 +9,11 @@ import org.springframework.stereotype.Repository;
 public class MembersRepository {
     @PersistenceContext
     EntityManager em;
-    public Long save(Members members) {
-        em.persist(members);
-        return members.getId();
+    public int save(Member member) {
+        em.persist(member);
+        return member.getMember_id();
     }
-    public Members find(Long id) {
-        return em.find(Members.class, id);
+    public Member find(Integer Member_id) {
+        return em.find(Member.class, Member_id);
     }
 }
