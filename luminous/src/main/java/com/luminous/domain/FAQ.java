@@ -1,0 +1,27 @@
+package com.luminous.domain;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import lombok.Getter;
+
+@Entity
+@Getter
+public class FAQ {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long faq_id;
+
+    private String faq_title;
+    private String faq_content;
+    private String faq_answer;
+    private String faq_category;
+
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
+}
