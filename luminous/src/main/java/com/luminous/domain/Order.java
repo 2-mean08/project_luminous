@@ -31,10 +31,5 @@ public class Order {
     private BigDecimal total_price;
     private Timestamp order_date;
 
-    @OneToMany(mappedBy = "order")
-    private List<OrderItem> OrderItems;
-    
-    @OneToMany(mappedBy = "order")
-    private List<Custom> customs = new ArrayList<>();
 
 }

@@ -14,7 +14,7 @@ public class PopularItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pop_item_id;
 
-    private int sales_count;
+    private Long sales_count;
 
     @OneToOne
     @JoinColumn(name = "item_id")

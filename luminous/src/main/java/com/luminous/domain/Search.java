@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Search {
@@ -17,5 +19,9 @@ public class Search {
     private String search_content;
     private int search_frequency;
     private Timestamp last_search_date;
+    
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
 
 }

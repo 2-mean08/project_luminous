@@ -17,14 +17,13 @@ import lombok.Getter;
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long imageId;  // DB: image_id
+    private Long image_id;
+    private String imageURL;
 
     @ManyToOne
-    @JoinColumn(name = "member_id")
-    private Member member;
+    @JoinColumn(name = "item_id")
+    private Item item;
 
-    @OneToMany(mappedBy = "image")
-    private List<Custom> customs = new ArrayList<>();
     
 }
 

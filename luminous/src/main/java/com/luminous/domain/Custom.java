@@ -14,15 +14,19 @@ import lombok.Getter;
 public class Custom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long customId;  // DB: custom_id
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
-    private Order order;
+    private Long custom_id;  // DB: custom_id
 
     @ManyToOne
-    @JoinColumn(name = "image_id")
-    private Image image;
+    @JoinColumn(name = "item_id")
+    private Item item;
+    
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
+
+    @ManyToOne
+    @JoinColumn(name = "custom_image_id")
+    private CustomImage customimage;
     
     // 기존 필드 유지
 }

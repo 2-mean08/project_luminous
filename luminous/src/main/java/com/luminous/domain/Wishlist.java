@@ -15,8 +15,8 @@ public class Wishlist {
     private Long wishlist_id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private Member user;
+    @JoinColumn(name = "mameber_id")
+    private Member member;
 
     @ManyToOne
     @JoinColumn(name = "item_id")

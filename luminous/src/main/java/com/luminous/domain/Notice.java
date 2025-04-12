@@ -18,7 +18,7 @@ public class Notice {
 
     @ManyToOne
     @JoinColumn(name = "member_id")
-    private Member Member;
+    private Member member;
 
     private String no_title;
     private String no_content;

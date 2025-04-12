@@ -22,8 +22,5 @@ public class Item {
     private int stockQuantity;
     private BigDecimal price;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
 
 }

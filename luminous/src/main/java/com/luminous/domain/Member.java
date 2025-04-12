@@ -19,19 +19,11 @@ public class Member {
 
     private String login_id;
     private String password;
+    private String name;
     private String address;
     private String phone_number;
     private String email;
     private String nickname;
     private Timestamp timeRgst;
     private boolean admin;
-
-    @OneToMany(mappedBy = "member")
-    private List<Order> orders;
-
-    @OneToMany(mappedBy = "member")
-    private List<FAQ> faqs;
-    
-    @OneToMany(mappedBy = "member")
-    private List<Image> images = new ArrayList<>();
 }
