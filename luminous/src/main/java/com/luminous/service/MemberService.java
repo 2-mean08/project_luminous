@@ -14,8 +14,11 @@ import com.luminous.repository.MemberRepository;
 public class MemberService {
 
 	
-	@Autowired //필드 인젝션
-	private MemberRepository memberRepository;
+	private final MemberRepository memberRepository;
+	
+	public MemberService(MemberRepository memberRepository) {
+		this.memberRepository = memberRepository;
+	}
 	
 	//회원가입
 	@Transactional
@@ -26,9 +29,9 @@ public class MemberService {
 	}
 
 	private void validateDuplicateMember(Member member) {
-		List<Member> findMembers = memberRepository.findByName(member.getName());
+		List<Member> findMembers = memberRepository.findByLoginId(member.getLogin_id());
 		if (!findMembers.isEmpty()) {
-			throw new IllegalStateException("이미 존재하는 이름입니다.");
+			throw new IllegalStateException("이미 존재하는 아이디입니다.");
 		}
 	}
 	

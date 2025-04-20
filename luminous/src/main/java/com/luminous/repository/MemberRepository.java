@@ -8,6 +8,7 @@ import com.luminous.domain.Member;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import lombok.RequiredArgsConstructor;
 
 @Repository
 public class MemberRepository {
@@ -31,7 +32,12 @@ public class MemberRepository {
 		return em.createQuery("select m from Member m where m.name = :name", Member.class)
 		.setParameter("name", name)
 		.getResultList();
-		
+	}
+	
+	public List<Member> findByLoginId(String login_id){
+		return em.createQuery("select m from Member m where m.login_id = :login_id", Member.class)
+		.setParameter("login_id", login_id)
+		.getResultList();
 	}
 	
 }
