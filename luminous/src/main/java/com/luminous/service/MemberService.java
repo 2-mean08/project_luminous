@@ -7,41 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.luminous.domain.Member;
-import com.luminous.repository.MemberRepository;
 
 @Service
 @Transactional(readOnly = true)
 public class MemberService {
-
 	
-	private final MemberRepository memberRepository;
-	
-	public MemberService(MemberRepository memberRepository) {
-		this.memberRepository = memberRepository;
-	}
-	
-	//회원가입
-	@Transactional
-	public Long join(Member member) {
-		validateDuplicateMember(member);
-		memberRepository.save(member);
-		return member.getMember_id();
-	}
-
-	private void validateDuplicateMember(Member member) {
-		List<Member> findMembers = memberRepository.findByLoginId(member.getLogin_id());
-		if (!findMembers.isEmpty()) {
-			throw new IllegalStateException("이미 존재하는 아이디입니다.");
-		}
-	}
-	
-	//회원 전체 조회
-	public List<Member> findMembers(){
-		return memberRepository.findAll();
-	}
-	
-	public Member findOne(Long memberId) {
-		return memberRepository.findOne(memberId);
-	}
 	
 }

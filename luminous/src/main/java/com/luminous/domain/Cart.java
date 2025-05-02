@@ -17,8 +17,8 @@ public class Cart {
     private Long cart_id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private Member user;
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     @ManyToOne
     @JoinColumn(name = "item_id")
