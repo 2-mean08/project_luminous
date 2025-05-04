@@ -1,28 +1,17 @@
 package com.luminous.domain;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import lombok.Getter;
-
-@Entity
-@Getter
 public class Image {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long image_id;
-    private String imageURL;
 
-    @ManyToOne
-    @JoinColumn(name = "item_id")
-    private Item item;
+    private Long imageId; //PK
+    private String imageURL; // 이미지 접근 URL 또는 경로
+    private String imageName; // 파일명 (예: abc123.jpg)         
+    private String fileType;  // MIME 타입 (image/jpeg, image/png 등)
+    private Long fileSize;  // 파일 크기 (바이트 단위)
+
+    private Long itemId; //FK
+    private Long companyId; //FK
+    private Long eventId; //FK
 
     
 }

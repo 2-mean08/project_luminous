@@ -8,8 +8,8 @@ import jakarta.persistence.Id;
 public class CustomImage {
 
 	@Id @GeneratedValue
-	private Long cus_image_id;
-	private Long cus_imageURL;
+	private Long customImageId;
+	private Long customImageUrl;
 	
 	private Double posX; 
     private Double posY;

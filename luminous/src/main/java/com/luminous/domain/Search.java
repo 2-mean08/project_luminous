@@ -2,26 +2,17 @@ package com.luminous.domain;
 
 import java.sql.Timestamp;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-
-@Entity
 public class Search {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long search_id;
 
-    private String search_content;
-    private int search_frequency;
-    private Timestamp last_search_date;
+    private Long searchId; //PK
+
+    private Long memberId; //FK
     
-    @ManyToOne
-    @JoinColumn(name = "member_id")
-    private Member member;
+    private String searchContent;
+    private int searchFrequency;
+    private Timestamp lastSearchDate;
+    
+
 
 }

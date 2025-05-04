@@ -2,26 +2,15 @@ package com.luminous.domain;
 
 import java.sql.Timestamp;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-
-@Entity
 public class Notice {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long no_id;
+    private Long noticeId; //PK
 
-    @ManyToOne
-    @JoinColumn(name = "member_id")
-    private Member member;
+    private Long memberId; //FK
+    private Long imageId; //FK
 
-    private String no_title;
-    private String no_content;
-    private Timestamp no_date;
+    private String noticeTitle;
+    private String noticeContent;
+    private Timestamp noticeDate;
 
 }

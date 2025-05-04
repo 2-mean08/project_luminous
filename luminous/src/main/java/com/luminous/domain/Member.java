@@ -2,37 +2,26 @@ package com.luminous.domain;
 
 import java.sql.Timestamp;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
 
-@Entity
 public class Member {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long member_id;
+    private Long memberId; //PK
 
-    private String login_id;
+    private String loginId;
     private String password;
     private String name;
     private String address;
-    private String phone_number;
+    private String phoneNumber;
     private String email;
     private String nickname;
     private Timestamp timeRgst; //가입 시기
     private Gender gender; //(male, female)
     private boolean admin;
-    
-    
-	public Long getMember_id() {
-		return member_id;
+	public Long getMemberId() {
+		return memberId;
 	}
-	public String getLogin_id() {
-		return login_id;
+	public String getLoginId() {
+		return loginId;
 	}
 	public String getPassword() {
 		return password;
@@ -43,8 +32,8 @@ public class Member {
 	public String getAddress() {
 		return address;
 	}
-	public String getPhone_number() {
-		return phone_number;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 	public String getEmail() {
 		return email;
@@ -61,11 +50,11 @@ public class Member {
 	public boolean isAdmin() {
 		return admin;
 	}
-	public void setMember_id(Long member_id) {
-		this.member_id = member_id;
+	public void setMemberId(Long memberId) {
+		this.memberId = memberId;
 	}
-	public void setLogin_id(String login_id) {
-		this.login_id = login_id;
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
 	}
 	public void setPassword(String password) {
 		this.password = password;
@@ -76,8 +65,8 @@ public class Member {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public void setPhone_number(String phone_number) {
-		this.phone_number = phone_number;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 	public void setEmail(String email) {
 		this.email = email;
