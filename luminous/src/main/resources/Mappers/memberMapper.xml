@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.luminous.mapper.MemberMapper">
+	
+	<!-- 회원가입 sql문 -->
     <insert id="insertMember" parameterType="com.luminous.domain.Member" useGeneratedKeys="true" keyProperty="memberId">
-        INSERT INTO member (login_id, password, name, address, phone_number, email, nickname, gender, admin)
-        VALUES (#{loginId}, #{password}, #{name}, #{address}, #{phoneNumber}, #{email}, #{nickname}, #{gender}, #{admin})
+        INSERT INTO member (login_id, password, name, address, phone_number, email, nickname, gender)
+        VALUES (#{loginId}, #{password}, #{name}, #{address}, #{phoneNumber}, #{email}, #{nickname}, #{gender})
     </insert>
+    
+    <!-- 로그인 기능 sql문(비밀번호 암호화 해야함) -->
+    <select id="Login" resultType="com.luminous.domain.Member">
+        SELECT * FROM member
+        WHERE login_id = #{loginId} AND password = #{password}
+    </select>
+
+
 </mapper>
+

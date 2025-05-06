@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.luminous.domain.Member;
+import com.luminous.dto.LoginDto;
 import com.luminous.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
@@ -32,5 +33,18 @@ public class MemberController {
         memberService.join(member);
         return "redirect:/";
     }
+    
+    @GetMapping("/login")
+    public String loginForm(Model model) {
+        model.addAttribute("LoginDto", new LoginDto());
+        return "login";
+    }
+    
+	@PostMapping("/login")
+	public String login(@ModelAttribute LoginDto loginDto) {
+	    // loginDto.getLoginId(), loginDto.getPassword()로 값 사용
+	    // 로그인 처리 로직
+	    return "redirect:/";
+	}
 }
 
