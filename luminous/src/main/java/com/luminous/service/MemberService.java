@@ -1,16 +1,19 @@
 package com.luminous.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.luminous.domain.Member;
 import com.luminous.dto.LoginDto;
+import com.luminous.exception.DuplicateLoginIdException;
 import com.luminous.mapper.MemberMapper;
 
 @Service
 public class MemberService {
-    public MemberService(MemberMapper memberMapper, PasswordEncoder passwordEncoder) {
+    @Autowired
+	public MemberService(MemberMapper memberMapper, PasswordEncoder passwordEncoder) {
 		this.memberMapper = memberMapper;
 		this.passwordEncoder = passwordEncoder;
 	}
@@ -19,14 +22,18 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
 
 
-
 	@Transactional //도중에 끊기면 DB에 전송 X
-    public void join(Member member) {
+    public void registerMember(Member member) {
+		// 중복 체크 강화
+	    if (memberMapper.existsByLoginId(member.getLoginId())) {
+	        throw new DuplicateLoginIdException("이미 사용 중인 아이디입니다.");
+	    }
 		String plainPassword = member.getPassword();
 		String hashedPassword = passwordEncoder.encode(plainPassword); //비밀번호 암호화
 		member.setPassword(hashedPassword);
         memberMapper.insertMember(member);
     }
+
 	
 	 // 로그인 서비스 메서드 추가
 	public Member login(LoginDto loginDto) { 

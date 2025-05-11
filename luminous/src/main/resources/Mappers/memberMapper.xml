@@ -8,11 +8,20 @@
         VALUES (#{loginId}, #{password}, #{name}, #{address}, #{phoneNumber}, #{email}, #{nickname}, #{gender})
     </insert>
     
-    <!-- 로그인 기능 sql문(비밀번호 암호화 해야함) -->
-    <select id="Login" resultType="com.luminous.domain.Member">
-        SELECT * FROM member
-        WHERE login_id = #{loginId} AND password = #{password}
-    </select>
+	<select id="existsByLoginId" resultType="boolean" parameterType="string">
+    SELECT COUNT(*) > 0 FROM member WHERE login_id = #{loginId}
+	</select>
+
+    <select id="findByLoginId" resultType="com.luminous.domain.Member" parameterType="string">
+    SELECT * FROM member WHERE login_id = #{loginId}
+	</select>
+
+    
+    <!-- 로그인 기능 sql문 -->
+    <select id="login" resultType="com.luminous.dto.LoginDto">
+    SELECT login_id, password FROM member
+    WHERE login_id = #{loginId} AND password = #{password}
+	</select>
 
 
 </mapper>

@@ -10,7 +10,8 @@ import com.luminous.dto.LoginDto;
 public interface MemberMapper {
     void insertMember(Member member);
     Member findByLoginId(String loginId);
-    LoginDto Login(@Param("loginId") String loginId, @Param("password") String password);
+    LoginDto login(@Param("loginId") String loginId, @Param("password") String password);
+    boolean existsByLoginId(String loginId);
 }
 
 

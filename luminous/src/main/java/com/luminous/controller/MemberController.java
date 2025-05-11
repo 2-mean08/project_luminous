@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.luminous.domain.Member;
 import com.luminous.dto.LoginDto;
+import com.luminous.exception.DuplicateLoginIdException;
 import com.luminous.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
@@ -29,9 +30,17 @@ public class MemberController {
     }
 
     @PostMapping("/join")
-    public String join(@ModelAttribute Member member) {
-        memberService.join(member);
-        return "redirect:/";
+    public String register(@ModelAttribute Member member, Model model) {
+    	try {
+            memberService.registerMember(member);
+            return "redirect:/login";
+        } catch (DuplicateLoginIdException e) {
+            model.addAttribute("errorMessage", e.getMessage());
+            return "join";
+        } catch (Exception e) { // 모든 예외 잡기
+            model.addAttribute("errorMessage", "회원가입 중 오류가 발생했습니다.");
+            return "join";
+        }
     }
     
     @GetMapping("/login")
@@ -41,10 +50,15 @@ public class MemberController {
     }
     
 	@PostMapping("/login")
-	public String login(@ModelAttribute LoginDto loginDto) {
-	    // loginDto.getLoginId(), loginDto.getPassword()로 값 사용
-	    // 로그인 처리 로직
-	    return "redirect:/";
+	public String login(@ModelAttribute LoginDto loginDto, Model model) {
+	    try {
+	        Member member = memberService.login(loginDto);
+	        // 세션에 로그인 정보 저장 등 추가 작업
+	        return "redirect:/";
+	    } catch (Exception e) {
+	        model.addAttribute("errorMessage", "로그인 실패");
+	        return "login";
+	    }
 	}
 }
 

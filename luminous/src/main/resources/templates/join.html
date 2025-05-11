@@ -1,25 +1,53 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"> <!-- 필수 네임스페이스 추가 -->
+
 <head>
-    <meta charset="UTF-8">
-    <title>회원가입</title>
+	<meta charset="UTF-8" />
+	<title>회원가입</title>
 </head>
+
 <body>
-    <h1>회원가입</h1>
-    <form th:action="@{/join}" th:object="${member}" method="post">
-        아이디: <input type="text" th:field="*{loginId}" required><br>
-        비밀번호: <input type="password" th:field="*{password}" required><br>
-        이름: <input type="text" th:field="*{name}" required><br>
-        주소: <input type="text" th:field="*{address}"><br>
-        전화번호: <input type="tel" th:field="*{phoneNumber}"><br>
-        이메일: <input type="email" th:field="*{email}" required><br>
-        닉네임: <input type="text" th:field="*{nickname}"><br>
-        성별: 
-        <select th:field="*{gender}">
-            <option value="MALE">남성</option>
-            <option value="FEMALE">여성</option>
-        </select><br>
-        <button type="submit">가입하기</button>
-    </form>
+	<!-- th:action: 폼 제출 경로 지정 -->
+	<!-- th:object: 바인딩할 모델 객체 지정 -->
+	<form th:action="@{/join}" method="post" th:object="${member}">
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+		<!-- 각 필드에 th:field로 모델 객체와 바인딩 -->
+		아이디:
+		<input type="text" th:field="*{loginId}" required="" /><br />
+
+		비밀번호:
+		<input type="password" th:field="*{password}" required="" /><br />
+
+		이름:
+		<input type="text" th:field="*{name}" required="" /><br />
+
+		주소:
+		<input type="text" th:field="*{address}" /><br />
+
+		전화번호:
+		<input type="tel" th:field="*{phoneNumber}" /><br />
+
+		이메일:
+		<input type="email" th:field="*{email}" required="" /><br />
+
+		닉네임:
+		<input type="text" th:field="*{nickname}" /><br />
+
+		성별:
+		<select th:field="*{gender}">
+			<option value="MALE">남성</option>
+			<option value="FEMALE">여성</option>
+		</select><br />
+
+		<!-- 에러 메시지 출력 부분 -->
+		<div th:if="${errorMessage}" style="color:red;">
+			<p th:text="${errorMessage}"></p>
+		</div>
+
+		<button type="submit">가입하기</button>
+
+	</form>
+
 </body>
+
 </html>
