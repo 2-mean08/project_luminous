@@ -11,6 +11,10 @@
         <input type="password" name="password" placeholder="비밀번호" required>
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <button type="submit">로그인</button>
+		<!-- 로그인 실패 시 메시지 표시 -->
+		    <div th:if="${param.error}">
+		        아이디 또는 비밀번호가 잘못되었습니다.
+		    </div>
     </form>
 </body>
 </html>

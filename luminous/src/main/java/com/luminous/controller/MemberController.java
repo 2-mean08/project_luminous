@@ -14,9 +14,8 @@ import com.luminous.service.MemberService;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequiredArgsConstructor
 public class MemberController {
-    private final MemberService memberService;
+	private final MemberService memberService;
 
     public MemberController(MemberService memberService) {
 		super();
@@ -43,6 +42,12 @@ public class MemberController {
         }
     }
     
+	@GetMapping("/login")
+    public String loginForm() {
+        return "login";
+    }
+        
+/*
     @GetMapping("/login")
     public String loginForm(Model model) {
         model.addAttribute("LoginDto", new LoginDto());
@@ -60,5 +65,6 @@ public class MemberController {
 	        return "login";
 	    }
 	}
+	*/
 }
 
