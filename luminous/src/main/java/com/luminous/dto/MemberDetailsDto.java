@@ -15,7 +15,6 @@ public class MemberDetailsDto implements UserDetails {
 	private final Member member;
 
 	public MemberDetailsDto(Member member) {
-		super();
 		this.member = member;
 	}
 

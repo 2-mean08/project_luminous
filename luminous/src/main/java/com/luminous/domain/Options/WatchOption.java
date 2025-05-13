@@ -6,6 +6,7 @@ public class WatchOption {
 	
 	private Long itemId; //FPK
 	private Long watchSeq; //PK(seq)
+	private Long imageId; //FK
 	
 	private String color;
     private String size;

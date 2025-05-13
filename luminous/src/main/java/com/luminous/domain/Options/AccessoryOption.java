@@ -6,6 +6,7 @@ public class AccessoryOption {
 	
 	private Long itemId; //FPK
 	private Long accessorySeq; //PK(seq)
+	private Long imageId; //FK
 	
 	private String color;
     private String size;

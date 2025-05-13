@@ -6,6 +6,7 @@ public class CaseOption {
 	
 	private Long itemId; //FPK
 	private Long caseSeq; //PK(seq)
+	private Long imageId; //FK
 	
 	private String color;
     private String size;

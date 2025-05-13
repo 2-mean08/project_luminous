@@ -9,16 +9,24 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import com.luminous.service.MemberDetailsService;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+	
+	private final MemberDetailsService memberDetailsService;
+	private final RoleBasedSuccessHandler roleBasedSuccessHandler;
 
 	@Autowired
-	private MemberDetailsService memberDetailsService;
-
+	public SecurityConfig(MemberDetailsService memberDetailsService, RoleBasedSuccessHandler roleBasedSuccessHandler) {
+		super();
+		this.memberDetailsService = memberDetailsService;
+		this.roleBasedSuccessHandler = roleBasedSuccessHandler;
+	}
+	
 	// 비밀번호 암호화용 빈 등록
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -34,15 +42,15 @@ public class SecurityConfig {
 						// 회원가입 페이지(GET, POST) 모두 비로그인 허용
 						.requestMatchers(HttpMethod.GET, "/join").permitAll()
 						.requestMatchers(HttpMethod.POST, "/join").permitAll()
-						// 로그인, 회원가입, 정적리소스(css, js, images) 비로그인 허용
-						.requestMatchers("/login", "/join", "/css/**", "/js/**", "/images/**").permitAll()
-						// 이외 모든 요청은 인증 필요
+						.requestMatchers("/login", "/join", "/css/**", "/js/**", "/images/**").permitAll() // 이외 모든 요청은 인증 필요
+						.requestMatchers("/item/register").hasRole("ADMIN") // ✅ ADMIN만 접근 허용
 						.anyRequest().authenticated())
 				.formLogin(form -> form.loginPage("/login") // 커스텀 로그인 페이지
 						.loginProcessingUrl("/login") // 로그인 처리 URL
 						.usernameParameter("loginId") // 로그인 폼의 name 속성
 						.passwordParameter("password").defaultSuccessUrl("/", true) // 로그인 성공 시 이동
 						.failureUrl("/login?error=true") // 실패 시 이동
+						.successHandler(roleBasedSuccessHandler) // 커스텀 핸들러 사용
 						.permitAll())
 				.logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/").permitAll());
 		return http.build();

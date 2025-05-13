@@ -9,10 +9,6 @@ public class Image {
     private String fileType;  // MIME 타입 (image/jpeg, image/png 등)
     private Long fileSize;  // 파일 크기 (바이트 단위)
 
-    private Long itemId; //FK
-    private Long companyId; //FK
-    private Long eventId; //FK
-
     
 }
 

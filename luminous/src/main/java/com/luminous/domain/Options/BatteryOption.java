@@ -6,6 +6,7 @@ public class BatteryOption {
 	
 	private Long itemId; //FPK
 	private Long batterySeq; //PK(seq)
+	private Long imageId; //FK
 	
 	private String color;
     private String capacity;
