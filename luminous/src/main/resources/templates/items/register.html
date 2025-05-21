@@ -1,0 +1,57 @@
+<!-- templates/items/register-form.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>상품 등록</title>
+</head>
+<body>
+    <h2>상품 등록</h2>
+    <form th:action="@{/items/register}" method="post">
+        <input type="hidden" name="categoryId" th:value="${categoryId}" />
+
+        <div>
+            <label>상품명:</label>
+            <input type="text" th:field="*{item.itemName}" />
+        </div>
+
+        <div>
+            <label>가격:</label>
+            <input type="number" th:field="*{item.price}" />
+        </div>
+
+        <!-- 옵션 타입에 따른 분기 처리 -->
+        <div th:switch="${optionType}">
+			<div th:case="'AccessoryOption'">
+			    <label>악세서리 옵션:</label>
+			    <input type="text" th:field="*{option.color}" placeholder="색상" />
+			    <input type="text" th:field="*{option.size}" placeholder="사이즈" />
+			    <input type="text" th:field="*{option.model}" placeholder="모델" />
+			    <input type="number" th:field="*{option.accessoryQuantity}" placeholder="수량" />
+			</div>
+			<!-- BatteryOption 섹션 -->
+			<div th:case="'BatteryOption'">
+			    <label>배터리 용량:</label>
+			    <input type="text" th:field="*{option.capacity}" placeholder="mAh" /> <!-- String 타입으로 수정 -->
+			    <input type="number" th:field="*{option.batteryQuantity}" placeholder="수량" />
+			</div>
+			<!-- CaseOption 섹션 -->
+			<div th:case="'CaseOption'">
+			    <label>케이스 색상:</label>
+			    <input type="text" th:field="*{option.color}" placeholder="색상" />
+			    <input type="number" th:field="*{option.caseQuantity}" placeholder="수량" />
+			</div>
+			<!-- WatchOption 섹션 -->
+			<div th:case="'WatchOption'">
+			    <label>워치 밴드 종류:</label>
+			    <input type="text" th:field="*{option.model}" placeholder="밴드 종류" /> <!-- bandType → model로 수정 -->
+			    <input type="number" th:field="*{option.watchQuantity}" placeholder="수량" />
+			</div>
+            <div th:case="*">
+                <p>알 수 없는 옵션입니다.</p>
+            </div>
+        </div>
+
+        <button type="submit">등록</button>
+    </form>
+</body>
+</html>

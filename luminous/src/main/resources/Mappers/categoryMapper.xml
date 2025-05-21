@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luminous.mapper.CategoryMapper">
+
+	<!-- 카테고리 기본 정보 조회 -->
+	<select id="findById" parameterType="long"
+		resultType="com.luminous.domain.Category">
+		SELECT
+		category_id,
+		category_name,
+		parent_category_id,
+		description
+		FROM category
+		WHERE category_id = #{categoryId}
+	</select>
+
+	<!-- 카테고리 존재 여부 확인 -->
+	<select id="existsById" parameterType="long" resultType="int">
+		SELECT COUNT(*) FROM category WHERE category_id = #{categoryId}
+	</select>
+
+	<!-- 루트 카테고리만 조회 -->
+	<select id="selectRootCategories"
+		resultType="com.luminous.domain.Category">
+		SELECT
+		category_id,
+		category_name,
+		parent_category_id,
+		description
+		FROM category
+		WHERE parent_category_id IS NULL
+	</select>
+
+	<!-- 특정 parentCategory의 하위 카테고리 조회 -->
+	<select id="selectByParentCategory" parameterType="long"
+		resultType="com.luminous.domain.Category">
+		SELECT
+		category_id,
+		category_name,
+		parent_category_id,
+		description
+		FROM category
+		WHERE
+		<choose>
+			<when test="parentCategoryId == null">
+				parent_category_id IS NULL
+			</when>
+			<otherwise>
+				parent_category_id = #{parentCategoryId}
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<!-- parentCategory 하위 최대 category_id 조회 -->
+	<select id="findMaxSubIdByParentCategory" parameterType="long"
+		resultType="long">
+		SELECT MAX(category_id)
+		FROM category
+		WHERE parent_category_id = #{parentCategoryId}
+	</select>
+
+	<!-- 카테고리 추가 -->
+	<insert id="insertCategory"
+		parameterType="com.luminous.domain.Category">
+		INSERT INTO category
+		(category_id, parent_category_id, category_name, description)
+		VALUES
+		(#{id}, #{parentCategoryId}, #{name}, #{description})
+	</insert>
+</mapper>

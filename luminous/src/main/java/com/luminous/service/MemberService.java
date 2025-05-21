@@ -22,7 +22,7 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
 
 
-	@Transactional //도중에 끊기면 DB에 전송 X
+	@Transactional //회원가입, 도중에 끊기면 DB에 전송 X
     public void registerMember(Member member) {
 		// 중복 체크 강화
 	    if (memberMapper.existsByLoginId(member.getLoginId())) {
@@ -34,7 +34,7 @@ public class MemberService {
         memberMapper.insertMember(member);
     }
 
-	
+	/*
 	 // 로그인 서비스 메서드 추가
 	public Member login(LoginDto loginDto) { 
         // 1. ID로 회원 조회
@@ -47,7 +47,7 @@ public class MemberService {
         
         return member;
     }
-	
+	*/
 
 }
 

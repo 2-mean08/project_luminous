@@ -27,7 +27,7 @@ public class RoleBasedSuccessHandler implements AuthenticationSuccessHandler {
             .anyMatch(role -> role.equals("ROLE_ADMIN"));
 
         // 2. 역할에 따라 리다이렉트 URL 결정
-        String redirectUrl = isAdmin ? "/item" : "/";
+        String redirectUrl = isAdmin ? "/item" : "/"; //어드민이면 /item으로, 아니면 홈으로
         response.sendRedirect(redirectUrl);
     }
 }
