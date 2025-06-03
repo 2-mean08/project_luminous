@@ -4,6 +4,10 @@ spring:
     username: root
     password: 1234
     driver-class-name: org.mariadb.jdbc.Driver
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 50MB
   
   jpa:
     hibernate:
@@ -23,3 +27,6 @@ logging:
     com:
       luminous: 
         mapper: DEBUG
+
+file:
+  upload-dir: /src/main/resources/uploads/

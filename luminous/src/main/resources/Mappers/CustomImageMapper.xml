@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.luminous.domain.CustomImageMapper">
+    <resultMap id="customImageMap" type="com.luminous.domain.CustomImage">
+        <id property="customImageId" column="custom_image_id"/>
+        <result property="imageUrl" column="image_url"/>
+        <result property="posX" column="pos_x"/>
+        <result property="posY" column="pos_y"/>
+        <result property="width" column="width"/>
+        <result property="height" column="height"/>
+        <result property="rotation" column="rotation"/>
+        <result property="originalWidth" column="original_width"/>
+        <result property="originalHeight" column="original_height"/>
+    </resultMap>
+</mapper>

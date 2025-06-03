@@ -3,11 +3,21 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.luminous.mapper.ItemMapper">
 
-    <insert id="insertItem" parameterType="com.luminous.domain.Item">
-        INSERT INTO items (
-            item_id, category_id, image_id, item_name, price
-        ) VALUES (
-            #{itemId}, #{categoryId}, #{imageId}, #{itemName}, #{price}
-        )
-    </insert>
+	<insert id="insertItem" parameterType="com.luminous.domain.Item">
+		INSERT INTO items (
+		item_id, category_id, item_name, price
+		) VALUES (
+		#{itemId}, #{categoryId}, #{itemName}, #{price}
+		)
+	</insert>
+
+	<insert id="insertImage"
+		parameterType="com.luminous.domain.Image">
+		INSERT INTO image (
+		image_id, image_url, image_name, file_type, file_size, image_type, item_id
+		) VALUES (
+		#{imageId}, #{imageUrl}, #{imageName}, #{fileType}, #{fileSize}, #{imageType},
+		#{itemId}
+		)
+	</insert>
 </mapper>
