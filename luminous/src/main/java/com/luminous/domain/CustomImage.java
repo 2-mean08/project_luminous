@@ -1,7 +1,6 @@
 package com.luminous.domain;
 import jakarta.persistence.Entity;
 
-@Entity
 public class CustomImage {
 	
     private Long customImageId;

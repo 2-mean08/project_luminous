@@ -18,6 +18,7 @@ logging:
   level:
     org.springframework.web.cors: TRACE
     org.springframework.security: DEBUG
+    org.springframework.security.web: DEBUG
     com.luminous.mapper: DEBUG
 
 file:

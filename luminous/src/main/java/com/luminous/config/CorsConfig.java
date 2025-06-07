@@ -14,24 +14,22 @@ import org.springframework.web.filter.CorsFilter;
 public class CorsConfig {
     
     @Bean
-    public CorsFilter corsFilter() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", corsConfiguration());
-        return new CorsFilter(source);
-    }
-
-    private CorsConfiguration corsConfiguration() {
+    public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOriginPatterns(List.of(
-        	    "http://localhost:8080",    // 서버 포트 명시적 허용
-        	    "http://localhost:*",       // 모든 클라이언트 포트 허용
-        	    "http://127.0.0.1:*"        // IPv4 모든 포트
-            ));
-        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
-        config.setAllowedHeaders(Arrays.asList("*"));
-        config.setExposedHeaders(Arrays.asList("Authorization", "Content-Type"));
+            "http://localhost",       // 포트 없는 경우 (80)
+            "http://localhost:*",     // 모든 포트 허용
+            "http://127.0.0.1:*"      // IPv4 모든 포트
+        ));
+        config.setAllowedMethods(List.of("*"));
+        config.setAllowedHeaders(List.of("*"));
+        config.setExposedHeaders(List.of("Authorization", "Content-Type"));
         config.setAllowCredentials(true);
         config.setMaxAge(1800L);
-        return config;
+        
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        return source;
     }
 }
+
