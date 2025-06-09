@@ -1,5 +1,4 @@
 package com.luminous.domain;
-import jakarta.persistence.Entity;
 
 public class CustomImage {
 	

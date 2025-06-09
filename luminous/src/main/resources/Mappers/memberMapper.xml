@@ -17,12 +17,11 @@
 	</select>
 
 
-    <!-- 로그인 기능 sql문 
+    <!-- 로그인 기능 sql문 -->
     <select id="login" resultType="com.luminous.dto.LoginDto">
     SELECT login_id, password FROM member
     WHERE login_id = #{loginId} AND password = #{password}
 	</select>
-	-->
 
 </mapper>
 
