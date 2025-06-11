@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.luminous.domain.Member;
 import com.luminous.dto.LoginDto;
 import com.luminous.service.MemberService;
-
+//광우는 살아있다
 @RestController
 @RequestMapping("/api")
 public class MemberController {
@@ -27,6 +27,7 @@ public class MemberController {
 	@PostMapping("/join")
 	public ResponseEntity<?> registerMember(@RequestBody Member member) {
 		try {
+			System.out.println("아나바다");
 			System.out.println("login_id: " + member.getLoginId());
 			memberService.registerMember(member);
 			return ResponseEntity.ok("회원 가입 성공");
