@@ -12,7 +12,7 @@ public interface MemberMapper {
     Member findByLoginId(@Param("loginId") String loginId); // loginId로 회원 조회 (로그인용)
     LoginDto login(@Param("loginId") String loginId, @Param("password") String password);
     boolean existsByLoginId(String loginId);
-    
+    int countByLoginId(@Param("loginId") String loginId);
 }
 
 

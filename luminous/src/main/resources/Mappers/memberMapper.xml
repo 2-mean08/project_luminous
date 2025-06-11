@@ -22,6 +22,12 @@
     SELECT login_id, password FROM member
     WHERE login_id = #{loginId} AND password = #{password}
 	</select>
+	
+	<select id="countByLoginId" resultType="int">
+        SELECT COUNT(*)
+        FROM member
+        WHERE login_id = #{loginId}
+    </select>
 
 </mapper>
 

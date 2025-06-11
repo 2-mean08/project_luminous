@@ -2,12 +2,16 @@ package com.luminous;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 
-@SpringBootApplication
-public class LuminousApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(LuminousApplication.class, args);
+@SpringBootApplication(exclude = {
+	    SecurityAutoConfiguration.class,
+	    UserDetailsServiceAutoConfiguration.class
+	})
+	public class LuminousApplication {
+	    public static void main(String[] args) {
+	        SpringApplication.run(LuminousApplication.class, args);
+	    }
 	}
 
-}
