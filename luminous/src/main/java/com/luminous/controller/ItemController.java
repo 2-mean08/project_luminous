@@ -20,7 +20,7 @@ import com.luminous.domain.Options.CaseOption;
 import com.luminous.domain.Options.WatchOption;
 import com.luminous.service.CategoryService;
 import com.luminous.service.ItemService;
-//알기 쉬운 주석
+
 @Controller
 @RequestMapping("/items")
 public class ItemController {
