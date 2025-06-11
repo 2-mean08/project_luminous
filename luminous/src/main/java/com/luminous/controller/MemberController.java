@@ -27,6 +27,7 @@ public class MemberController {
 	@PostMapping("/join")
 	public ResponseEntity<?> registerMember(@RequestBody Member member) {
 		try {
+			System.out.println("아나바다");
 			System.out.println("login_id: " + member.getLoginId());
 			memberService.registerMember(member);
 			return ResponseEntity.ok("회원 가입 성공");
